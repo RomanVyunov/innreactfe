@@ -1,26 +1,34 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+
+/*class App extends React.Component {
+  render() {
+    //return <h1 class="display-1">Привет, {this.props.name}!</h1>;
+    return <div class="container-fluid align-items-center">
+             <h1 class="display-1">Таймер</h1>
+             <div>
+               <button class="display-4" onClick={this.myMethod}>Остановить</button>
+               <button class="display-4">Сбросить</button>
+             </div>
+           </div>
+  }
+
+  myMethod(){
+  console.log("MY METHOD");
+
+  }
+}*/
+//import Navigation from './components/Navbar';
+import Routes from './Routes';
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes />
     </div>
   );
 }
-
 export default App;
