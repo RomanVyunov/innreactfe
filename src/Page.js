@@ -11,7 +11,6 @@ class Page extends Component {
 
     componentDidMount(){
                console.log("componentDidMount()",this.props.location.state.detail);
-    //fetch(`http://localhost:8123/users?id=${this.props.location.state.detail}`)
     fetch(`http://localhost:8123/user/${this.props.location.state.detail}`)
         .then(res => res.json())
         .then(
@@ -22,10 +21,7 @@ class Page extends Component {
                       data: result
                     });
                   },
-                  // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
-                  // чтобы не перехватывать исключения из ошибок в самих компонентах.
                   (error) => {
-                  console.log("ERROR OF FETCH!!!"+error)
                     this.setState({
                       isFetching: true,
                       error
@@ -36,37 +32,35 @@ class Page extends Component {
 
 
     render() {
-    console.log("RENDER MY PAGE!!!!!!!!!")
-    console.log("X=",this.props.location.state.detail);
-        /*return (
-            <div style={{ display: 'flex', justifyContent: 'center', padding: 30 }}>
-                <div><h2>MY PAGE !!!!!!!{this.props.location.state.detail} </h2>
-                </div>
-            </div>
-        );*/
         const { data, isFetching, error } = this.state;
         return <div >
-        <h1>Inforamtion about user</h1>
-        <div style={{backgroundColor: "#33cccc", border: "10px solid black", marginLeft: 100,marginRight: 100, padding: 100}}>
+        <h1>Информация о пользователе</h1>
+        <div style={{backgroundColor: "#33cccc", border: "10px solid black", borderRadius: 25, marginLeft: 200,marginRight: 200, padding: 100}}>
         <form align="left" >
                         <p style={{backgroundColor: "#33cccc", border: "5px solid black", padding: 10}}>
-                            <label > <b>Name:</b></label> <br />
+                            <label > <b>Имя:</b></label> <br />
                             <label> {`${data.name}`}</label>
                         </p>
                         <p style={{backgroundColor: "#33cccc", border: "5px solid black", padding: 10}}>
-                            <label> <b>INN:</b></label><br />
+                            <label> <b>ИНН:</b></label><br />
                             <label> {`${data.inn}`}</label>
                         </p>
-                        <p>
-                            <label><b> Phone:</b></label> <br />
+
+                        <p style={{backgroundColor: "#33cccc", border: "5px solid black", padding: 10}}>
+                            <label> <b>КПП:</b></label><br />
+                            <label> {`${data.kpp}`}</label>
+                        </p>
+
+                        <p style={{backgroundColor: "#33cccc", border: "5px solid black", padding: 10}}>
+                            <label><b> Телефон:</b></label> <br />
                             <label> {`${data.phone}`}</label>
                         </p>
-                        <p>
-                            <label><b>Company:</b></label> <br />
+                        <p style={{backgroundColor: "#33cccc", border: "5px solid black", padding: 10}}>
+                            <label><b>Компания:</b></label> <br />
                             <label> {`${data.company}`}</label>
-                        </p>
-                        <p>
-                            <label><b> Manager:</b></label> <br />
+                        </p >
+                        <p style={{backgroundColor: "#33cccc", border: "5px solid black", padding: 10}}>
+                            <label><b> Руководитель:</b></label> <br />
                             <label> {`${data.manager}`}</label>
                         </p>
         </form>

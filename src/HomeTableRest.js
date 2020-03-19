@@ -4,11 +4,9 @@ import logo from './logo.svg';
 import './App.css';
 import history from './history'
 
-//https://github.com/tannerlinsley/react-table/blob/master/examples/basic/src/App.js
 import styled from 'styled-components'
 import { useTable } from 'react-table'
 
-//import makeData from './makeData'
 import makeDataRest from './makeData'
 
 const Styles = styled.div`
@@ -23,6 +21,9 @@ const Styles = styled.div`
         td {
           border-bottom: 0;
         }
+      }
+      :hover {
+          background-color: #33cccc !important;
       }
     }
     th,
@@ -89,13 +90,9 @@ function Table({ columns, data }) {
 }
 
 const rowInfo = (rowobject) => {
-    console.log("ROW PRESSED!!!!!!!");
-    console.log("OBJECT ID =",rowobject.values.id)
-    let x = 101;
     history.push({
     pathname: '/page',
     state: {detail: rowobject.values.id}})
-    console.log("PUSHED!!!!!!!");
 }
 
 
@@ -109,8 +106,8 @@ function  HomeTableRest() {
           dataTable: {}
 });
 
+/* Обработчик для поиска */
     const fetchData = () => {
-        console.log("FETCH WITH NAME="+keyword)
         fetch(`http://localhost:8123/usersfiltered?name=${encodeURIComponent(keyword)}`)
         .then(response => response.json())
         .then(responseData => {
@@ -129,30 +126,34 @@ function  HomeTableRest() {
     const columns = React.useMemo(
     () => [
       {
-        Header: 'Our clients',
+        Header: 'Клиенты',
         columns: [
           {
             Header: 'ID',
             accessor: 'id',
           },
           {
-            Header: 'Name',
+            Header: 'Имя',
             accessor: 'name',
           },
           {
-            Header: 'Inn',
+            Header: 'ИНН',
             accessor: 'inn',
           },
           {
-            Header: 'Phone',
+            Header: 'КПП',
+            accessor: 'kpp',
+          },
+          {
+            Header: 'Телефон',
             accessor: 'phone',
           },
           {
-            Header: 'Company',
+            Header: 'Компания',
             accessor: 'company',
           },
           {
-            Header: 'Manager',
+            Header: 'Руководитель',
             accessor: 'manager',
           },
         ],
@@ -162,41 +163,20 @@ function  HomeTableRest() {
   )
 
     useEffect(() => {
-
             fetch(`http://localhost:8123/users`)
                 .then(res => res.json())
                 .then(
                           (result) => {
-                          console.log("RESULT OF FETCH!!!"+result)
-                          //setDataTable(result);
-                          /*var resultX = [{"id":1,
-                                        "inn":"INN",
-                                        "age": 29,
-                                        "visits":100,
-                                        "status":"OK",
-                                        "progress":"PROGR"},
-                                        {"id":2,
-                                          "inn":"INN_2",
-                                          "age": 29,
-                                          "visits":100,
-                                          "status":"OK",
-                                          "progress":"PROGR"}];*/
-                        setData(result);
-
+                            setData(result);
                           },
                           (error) => {
-                            console.log("ERROR OF FETCH!!!"+error)
+
                           }
                         )
 
         }, []);
 
 
-    /*useEffect(() => {
-        console.log("USE EFFECT IS CALLED!!!");
-    }, []);*/
-
-    console.log("RENDER!!!");
     return (
         <div className="HomeTableRest">
             <input type="text" onChange={handleChange} />

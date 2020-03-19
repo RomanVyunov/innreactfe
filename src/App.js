@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './index.css';
 
 
 /*class App extends React.Component {
