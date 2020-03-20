@@ -7,15 +7,14 @@ import history from './history'
 import styled from 'styled-components'
 import { useTable } from 'react-table'
 
-import makeDataRest from './makeData'
-
 const Styles = styled.div`
   padding: 1rem;
   table {
     border-spacing: 0;
-    background-color: #33cccc;
+    background-color: green;
     width: 100%;
     border: 10px solid black;
+    border-radius: 25;
     tr {
       :last-child {
         td {
@@ -23,7 +22,7 @@ const Styles = styled.div`
         }
       }
       :hover {
-          background-color: #33cccc !important;
+          background-color: green !important;
       }
     }
     th,
@@ -52,12 +51,6 @@ function Table({ columns, data }) {
     data,
   })
 
-    console.log("getTableProps=",getTableProps)
-    console.log("getTableBodyProps=",getTableBodyProps)
-    console.log("headerGroups=",headerGroups)
-    console.log("rows=",rows)
-    console.log("prepareRow=",prepareRow)
-
   // Render the UI for your table
   return (
     <table {...getTableProps()}>
@@ -76,7 +69,7 @@ function Table({ columns, data }) {
           return (
             <tr {...row.getRowProps({onClick: () => {rowInfo(row)},
                                 style: {
-                                    background: "green"
+                                    background: "#33cccc"
                                 }})}>
               {row.cells.map(cell => {
                 return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>

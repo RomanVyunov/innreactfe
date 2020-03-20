@@ -110,23 +110,23 @@ class AddUserPage extends Component {
 
     /*Обработчик нажатия кнопки на форме. */
     handleSubmit(e){
-    e.preventDefault(); //TO-DO:Why?
-    var nameisVal = this.validateName(this.state.name);
-    var innisVal = this.validateInn(this.state.inn);
-    var kppisVal = this.validateKpp(this.state.kpp);
-    var phoneisVal = this.validatePhone(this.state.phone);
-    /*Проверяем все ли данные корректно введены. нужно на случай если нажмем кнопку с пустой формой */
-    if (!(nameisVal && innisVal && kppisVal && phoneisVal)){
+        e.preventDefault(); //TO-DO:Why?
+        var nameisVal = this.validateName(this.state.name);
+        var innisVal = this.validateInn(this.state.inn);
+        var kppisVal = this.validateKpp(this.state.kpp);
+        var phoneisVal = this.validatePhone(this.state.phone);
+        /*Проверяем все ли данные корректно введены. нужно на случай если нажмем кнопку с пустой формой */
+        if (!(nameisVal && innisVal && kppisVal && phoneisVal)){
             this.setState({nameIsValid: nameisVal,
                             innIsValid: innisVal,
                             kppIsValid: kppisVal,
                             phoneIsValid: phoneisVal});
 
-    }else{
-    fetch(`http://localhost:8123/adduser`,{
-         method: 'POST',
-         headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({ name: this.state.name ,
+        }else{
+            fetch(`http://localhost:8123/adduser`,{
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: this.state.name ,
                                 inn: this.state.inn,
                                 kpp: this.state.kpp,
                                 phone: this.state.phone,
@@ -177,7 +177,7 @@ class AddUserPage extends Component {
         var phoneMessage = this.state.phoneIsValid===true ? " " : "Введите телефон в формате: 954-312-1234";
 
         return <div>
-            <h1 align="center"> Add user</h1>
+            <h1 align="center"> Новый пользователь</h1>
             <div>
             <Modal
                 isOpen={this.state.modalIsOpen}
@@ -192,7 +192,7 @@ class AddUserPage extends Component {
             </Modal>
             </div >
 
-            <form  style={{backgroundColor: "#33cccc",  padding: 100, border: "10px solid black",  borderRadius: 25, marginLeft: 100, marginRight: 100, padding: 100}}align="left" onSubmit={this.handleSubmit}>
+            <form  style={{backgroundColor: "#33cccc",  padding: 100, border: "10px solid black",  borderRadius: 25, marginLeft: 200, marginRight: 200, padding: 100}}align="left" onSubmit={this.handleSubmit}>
                 <p>
                     <label><b> Имя:</b><span className="required">*</span></label> <br />
                     <input type="text" onChange={this.handleNameChange} style={{borderColor: nameColor}} />

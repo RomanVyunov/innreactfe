@@ -4,17 +4,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-//const Router = ReactRouterDOM.BrowserRouter;
-//const Route = ReactRouterDOM.Route;
-//const Switch = ReactRouterDOM.Switch;
-//ReactDOM.render(<App name="HEEEEEY" />, document.getElementById('root'));
- /*ReactDOM.render(<Router>
-                    <Switch>
-                        <Route exact path="/" component={<App name="HEEEEEY" />} />
-                        <Route path="/about" component={About} />
-                    </Switch>
-                 </Router>, document.getElementById('root'));*/
-
 ReactDOM.render(
     <Router>
         <App />
